@@ -63,8 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\osu_logo_menu.cs" />
-    <Compile Include="Assets\Scripts\osu_logo_s_menu.cs" />
+    <Compile Include="Assets\Scripts\basic_function.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
