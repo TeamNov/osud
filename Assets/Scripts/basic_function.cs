@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿// By Novang
+
+using UnityEngine;
 using System.Collections;
 
 public class basic_function : MonoBehaviour {
