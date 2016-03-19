@@ -4,10 +4,8 @@ using UnityEngine;
 using System.Collections;
 
 public class Beat_Lner : MonoBehaviour {
-    int frame_skip = 0;
-    bool beats = false;
 
-    public AudioSpectrum AudioSp;
+    public BarSpectrum AudioSp;
     Animation anim;
 	// Use this for initialization
 	void Start () {
@@ -17,16 +15,10 @@ public class Beat_Lner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        beats = AudioSp.beat;
-        if(frame_skip == 0) {
-            if (beats == true)
-            {
-                anim.Stop();
-                anim.Play();
-            }
-            frame_skip = 0;
-        }else {
-            frame_skip--;
+        if (AudioSp.beat == true)
+        {
+            anim.Stop();
+            anim.Play();
         }
     }
 }

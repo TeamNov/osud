@@ -6,7 +6,7 @@ using System.Collections;
 public class Beat_wv_Lner : MonoBehaviour
 {
 
-    public AudioSpectrum AudioSp;
+    public BarSpectrum AudioSp;
     Animation anim;
     // Use this for initialization
     void Start()

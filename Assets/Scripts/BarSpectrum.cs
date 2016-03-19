@@ -5,36 +5,54 @@ using System.Collections;
 
 public class BarSpectrum : MonoBehaviour
 {
-    float[] spectrum = new float[68], avg = new float[17];
-    int cnt = 1;
+    float[] spectrum = new float[1024], avg = new float[32];
+    float pre_avg = 0f;
+    int cnt_n, cnt_m;
+    public bool beat;
 
     AudioSource _AS;
-    GameObject[] _BS;
+    public GameObject[] _BS;
 
     // Use this for initialization
     void Start()
     {
         _AS = GetComponent<AudioSource>();
-        _BS = GameObject.FindGameObjectsWithTag("Bar");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        cnt = 1;
-        _AS.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
+        beat = false;
+        cnt_n = 0;
+        cnt_m = 31;
+        _AS.GetSpectrumData(spectrum, 0, FFTWindow.Hamming);
 
-        // Input Data
-        for (int i = 0; i <= 16; i++)
-        {
-            // Avg
-            for (int k = cnt; k <= cnt + 3; k++)
+        for(int i = 0; i <= 31; i++) {
+            for (int a = cnt_n; a <= cnt_m; a++)
             {
-                avg[i] = avg[i] + spectrum[k];
-                cnt = k;
+                avg[i] = avg[i] + spectrum[a];
             }
-            avg[i] = avg[i] / 4;
-            
+            cnt_n = cnt_n + 32;
+            cnt_m = cnt_m + 32;
+            avg[i] = (avg[i] / 32) * 5 * i * i;
+            if (avg[i] >= 20)
+            {
+                _BS[i].transform.localScale = new Vector3(1f, 20f, 1f);
+            }
+            else
+            {
+                _BS[i].transform.localScale = new Vector3(1f, avg[i], 1f);
+            }
+
+            if (avg[16] - pre_avg >= 2f)
+            {
+                beat = true;
+            }
+
+            pre_avg = avg[16];
+            avg[i] = 0f;
         }
+
     }
 }
