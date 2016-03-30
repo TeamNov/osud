@@ -3,8 +3,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Beat_wv_Lner : MonoBehaviour
-{
+public class Beat_wv_Lner : MonoBehaviour {
 
     public BarSpectrum AudioSp;
     Animation anim;

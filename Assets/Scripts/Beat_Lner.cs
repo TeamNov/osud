@@ -10,14 +10,13 @@ public class Beat_Lner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animation>();
-        
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        animation[""].speed = 0f;
         if (AudioSp.beat == true)
         {
-            anim.Stop();
             anim.Play();
         }
     }
